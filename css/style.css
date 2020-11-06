@@ -29,7 +29,7 @@
 	 display: block;
 	 width: 95%;
 	 height: 40px;
-	 margin: 10px autp;
+	 margin: 10px auto;
 	 border: 2px solid #ccc;
 	 font-size: 16px;
 	 border-radius: 5px;
@@ -76,7 +76,7 @@
 	 width: 100%;
 	 background: #fff;
 	 margin: 30px auto;
-	 padding: 10x;
+	 padding: 10px;
 	 border-radius: 5px;
  }
  
@@ -89,8 +89,8 @@
  }
  
  .todo-item h2 {
-	 display: infline-block;
-	 padding: 5px 0x;
+	 display: inline-block;
+	 padding: 5px 0px;
 	 font-size: 17px;
 	 font-family: sans-serif;
 	 color: #555;
@@ -100,8 +100,6 @@
 	 display: block;
 	 width: 100%;
 	 padding: 5px 0px;
-	 font-soze: 17px;
-	 font-family: sans-serif;
 	 color: #888;
 	 padding-left: 30px;
 	 font-size: 14px;
