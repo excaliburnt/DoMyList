@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,13 @@
     <title>Do My List</title>
 </head>
 <body>
-<p>Hello world!</p>
+	<main>
+		<div class="add-section">
+			<form action="">
+				<input type="text" name="title" placeholder="This is field is required bro">
+			</form>
+		</div>
+	</main>
 
 </body>
 
