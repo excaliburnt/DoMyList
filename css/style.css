@@ -1,0 +1,26 @@
+  body {
+	 background: #34495e;
+  }
+
+  *{
+	 padding:0px;
+	 margin: 0px;
+	 box-sizing: boder-box;
+  }
+
+ main {
+	 background: transparent;
+	 max-width: 500px;
+	 width: 90%;
+	 height: 500px;
+	 margin: 30px auto;
+	 border-radius: 10px;
+ }
+
+ .add-section {
+	 width: 100%;
+	 background-color: #fff;
+	 margin: 0px auto;
+	 padding: 10px;
+	 border-radius: 5px;
+ }
