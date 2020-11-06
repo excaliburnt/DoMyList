@@ -19,7 +19,7 @@
 
  .add-section {
 	 width: 100%;
-	 background-color: #fff;
+	 background: #fff;
 	 margin: 0px auto;
 	 padding: 10px;
 	 border-radius: 5px;
@@ -37,10 +37,12 @@
  }
  
  .add-section button {
+	 display: block;
 	 width: 95%;
-    height: 40px;
-    margin: 10px auto;
+     height: 40px;
+     margin: 0px auto;
 	 border: none;
+	 outline: none;
 	 background: #0088ff;
 	 color: #fff;
 	 font-family: sans-serif;
@@ -57,9 +59,9 @@
  .add-section button span {
 	 border: 1px solid #fff;
 	 border-radius: 50%;
-	 display: infline-block;
-	 width: 18px;
-	 height: 18px;
+	 display: inline-block;
+	 width: 20px;
+	 height: 20px;
  }
  
  #errorMes {
