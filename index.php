@@ -12,16 +12,16 @@
 			<form action="">
 				<input type="text" 
 						name="title" 
-						placeholder="This field is required bro">
+						placeholder="Enter a task">
 				<button type ="submit">Add &nbsp; <span>&#43;</span></button>
 			</form>
 		</section>
 		<section class="todo-section">
 			<div class="todo-item">
 			<input type="checkbox">
-				<h2>Wassup</h2>
+				<h2>Workout</h2>
 				<br>
-				<small>Created by Marshmallow</small>
+				<small>11/6/2020</small>
 		</div>
 		</section>
 	</main>

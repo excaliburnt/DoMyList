@@ -1,5 +1,5 @@
   body {
-	 background: #34495e;
+	 background: #511f1f;
   }
 
   *{
@@ -43,7 +43,7 @@
      margin: 0px auto;
 	 border: none;
 	 outline: none;
-	 background: #0088ff;
+	 background: #b51000;
 	 color: #fff;
 	 font-family: sans-serif;
 	 font-size: 16px;
@@ -88,6 +88,7 @@
 	 padding: 20px 10px;
 	 box-shadow: 0 4px 8px 0 #ccc, 0 6px 20px 0 #ccc;
 	 border-radius: 5px;
+	 overflow: auto;
  }
  
  .todo-item h2 {
