@@ -12,7 +12,7 @@
 			<form action="">
 				<input type="text" 
 						name="title" 
-						placeholder="This is field is required bro">
+						placeholder="This field is required bro">
 				<button type ="submit">Add &nbsp; <span>&#43;</span></button>
 			</form>
 		</section>
