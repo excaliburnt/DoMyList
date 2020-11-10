@@ -11,8 +11,8 @@ $db = mysqli_connect('localhost', 'root', '', 'create account');
 //register user
 if(isset($_POST['reg_user'])) {
   $username = $_POST['username'];
+  $email = $_POST['email'];
   $password = $_POST['password'];
-  $newpassword = $_POST['newpassword'];
   $confirmpassword =  $_POST['confirmpassword'];
 
   //form validation
@@ -38,7 +38,6 @@ if(isset($_POST['reg_user'])) {
     if ($user['username'] === $username) {
       array_push($errors, "Username already exists");
     }
-
     if ($user['email'] === $email) {
       array_push($errors, "email already exists");
     }
@@ -73,7 +72,7 @@ if (isset($_POST['login_user'])) {
   	  $_SESSION['username'] = $username;
   	  $_SESSION['success'] = "You are now logged in";
   	  header('location: index.php');
-  	}else {
+  	} else {
   		array_push($errors, "Wrong username/password combination");
   	}
   }
@@ -103,17 +102,19 @@ if(isset($_POST['change_password'])) {
     $query = "SELECT * FROM users WHERE username='$username'";
     $results = mysqli_query($db, $query);
     $row = mysqli_fetch_array($results);
-    if ($_POST["password"] == $row["password"]) {
-      if($newpassword == $confirmnewpassword) {
-        $querys = "UPDATE users SET password='$newpassword' WHERE username='$username'";
-        $output = mysqli_query($db,$querys);
-        echo "<script> alert('Congratulations you have successfully changed your password')</script>";
+    if (!$results) {
+      echo "<script> alert('Username does not exist')</script>";
+    } else if ($_POST["password"] == $row["password"]) {
+        if ($newpassword == $confirmnewpassword) {
+          $querys = "UPDATE users SET password='$newpassword' WHERE username='$username'";
+          $output = mysqli_query($db,$querys);
+          echo "<script> alert('Congratulations you have successfully changed your password')</script>";
+        } else {
+            echo "<script> alert('Passwords must match')</script>";
+          }
       } else {
-          echo "<script> alert('Passwords must match')</script>";
+          echo "<script> alert('Password is not correct')</script>";
         }
-    } else {
-        echo "<script> alert('Password is not correct')</script>";
-      }
   }
 }
 ?>
