@@ -10,18 +10,23 @@ $db = mysqli_connect('localhost', 'root', '', 'create account');
 
 //register user
 if(isset($_POST['reg_user'])) {
-  $username = mysqli_real_escape_string($db, $_POST['username']);
-  $email = mysqli_real_escape_string($db, $_POST['email']);
-  $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
-  $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
-  $newpassword = mysqli_real_escape_string($db, $_POST['newpassword']);
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+  $newpassword = $_POST['newpassword'];
+  $confirmpassword =  $_POST['confirmpassword'];
 
   //form validation
-  if (empty($username)) { array_push($errors, "Username is required"); }
-  if (empty($email)) { array_push($errors, "Email is required"); }
-  if (empty($password_1)) { array_push($errors, "Password is required"); }
-  if ($password_1 != $password_2) {
-	array_push($errors, "The two passwords do not match");
+  if (empty($username)) {
+    array_push($errors, "Username is required");
+  }
+  if (empty($email)) {
+    array_push($errors, "Email is required");
+  }
+  if (empty($password)) {
+    array_push($errors, "Password is required");
+  }
+  if ($password != $confirmpassword) {
+	   array_push($errors, "The two passwords do not match");
   }
 
   //checks if users already has account
@@ -41,10 +46,7 @@ if(isset($_POST['reg_user'])) {
 
   // Register user if there are no errors in the form
   if (count($errors) == 0) {
-  	$password = md5($password_1);//encrypt the password before saving in the database
-
-  	$query = "INSERT INTO users (username, email, password)
-  			  VALUES('$username', '$email', '$password')";
+  	$query = "INSERT INTO users (username, email, password) VALUES('$username', '$email', '$password')";
   	mysqli_query($db, $query);
   	$_SESSION['username'] = $username;
   	$_SESSION['success'] = "You are now logged in";
@@ -54,8 +56,8 @@ if(isset($_POST['reg_user'])) {
 
 // login user
 if (isset($_POST['login_user'])) {
-  $username = mysqli_real_escape_string($db, $_POST['username']);
-  $password = mysqli_real_escape_string($db, $_POST['password']);
+  $username = $_POST['username'];
+  $password = $_POST['password'];
 
   if (empty($username)) {
   	array_push($errors, "Username is required");
@@ -65,7 +67,6 @@ if (isset($_POST['login_user'])) {
   }
 
   if (count($errors) == 0) {
-  	$password = md5($password);
   	$query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
   	$results = mysqli_query($db, $query);
   	if (mysqli_num_rows($results) == 1) {
@@ -80,10 +81,10 @@ if (isset($_POST['login_user'])) {
 
 // change password
 if(isset($_POST['change_password'])) {
-  $username = mysqli_real_escape_string($db, $_POST['username']);
-  $password = mysqli_real_escape_string($db, $_POST['password']);
-  $newpassword = mysqli_real_escape_string($db, $_POST['newpassword']);
-  $confirmnewpassword = mysqli_real_escape_string($db, $_POST['confirmnewpassword']);
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+  $newpassword = $_POST['newpassword'];
+  $confirmnewpassword = $_POST['confirmnewpassword'];
 
   if (empty($username)) {
   	array_push($errors, "Username is required");
@@ -99,25 +100,20 @@ if(isset($_POST['change_password'])) {
   }
 
   if (count($errors) == 0) {
-    $password = md5($password);
-    $newpassword = md5($newpassword);
-    $confirmnewpassword = md5($confirmnewpassword);
-    $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+    $query = "SELECT * FROM users WHERE username='$username'";
     $results = mysqli_query($db, $query);
-    $chg_pwd1=mysqli_fetch_array($results);
-    $data_pwd=$chg_pwd1['password'];
-    if($data_pwd==$password){
-      if($newpassword==$confirmnewpassword){
-      $querys = "UPDATE password SET newpassword='$newpassword' WHERE login='$username'";
-        $sql=mysqli_query($db, $querys);
-          echo "Congratulations You have successfully changed your password";
+    $row = mysqli_fetch_array($results);
+    if ($_POST["password"] == $row["password"]) {
+      if($newpassword == $confirmnewpassword) {
+        $querys = "UPDATE users SET password='$newpassword' WHERE username='$username'";
+        $output = mysqli_query($db,$querys);
+        echo "<script> alert('Congratulations you have successfully changed your password')</script>";
+      } else {
+          echo "<script> alert('Passwords must match')</script>";
         }
-       else {
-          echo "The new password and confirm new password fields must be the same";
-       }}
-       else {
-         echo "Your old password is wrong";
-       }
-     }
-   }
+    } else {
+        echo "<script> alert('Password is not correct')</script>";
+      }
+  }
+}
 ?>
