@@ -1,15 +1,9 @@
- <?php
- 
- $sName = "localhost";
- $uName = "root";
- $pass="";
- $db_name ="domylist";
+<?php 
 
- try{
-	$conn = new PDO("mysql:host=$sName;dbname=$db_name",
-					$uName, $pass);
-	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$sName = "localhost";
+$uName = "root";
+$pass = "";
+$db_name = "to_do_list";
 
- }catch(PDOException $e){
-   echo "Conection failed! : ". $e->getMessage();
- }
+$conn = new mysqli($sName, $uName, $pass, $db_name);
+    
