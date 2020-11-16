@@ -1,8 +1,8 @@
-
-<?php 
-require_once 'session.php';
-include('server.php'); 
+<?php
+  require_once 'session.php';
+  include('server.php');
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +32,7 @@ include('server.php');
     </p>
     <p>
     <a href="changepassword.php">Change password</a>
-  </p> 
+  </p>
   </form>
 </body>
 </html>
