@@ -1,8 +1,4 @@
-<?php
-  require_once 'session.php';
-  include('server.php');
-?>
-
+<?php include('server.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
