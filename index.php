@@ -30,6 +30,12 @@ else {
     <h1>MyToDo's</h1>
   </div>
 
+  <section id="logout">
+    <form action="session.php" method="get">
+      <input type="submit" name="logout" value="Logout">
+    </form>
+  </section>
+
 <section>
 	<form method="post" action="upload.php"  enctype="multipart/form-data">
 		<div>
@@ -39,11 +45,6 @@ else {
 	</form>
 
 	<img src="<?php echo $imagePath;?>">
-</section>
-<section id="logout">
-	<form action="session.php" method="get">
-		<input type="submit" name="logout" value="Logout">
-	</form>
 </section>
     <main>
 
