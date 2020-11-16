@@ -1,5 +1,7 @@
 <?php 
+require_once 'session.php';
 require 'db_conn.php';
+
 
 ?>
 
