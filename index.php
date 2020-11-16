@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once 'session.php';
 require 'db_conn.php';
 $stmt= $conn -> prepare("SELECT image FROM users WHERE username=?");
@@ -26,6 +26,15 @@ else {
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div class="header">
+    <h1>MyToDo's</h1>
+  </div>
+
+  <section id="logout">
+    <form action="session.php" method="get">
+      <input type="submit" name="logout" value="Logout">
+    </form>
+  </section>
 
 <section>
 	<form method="post" action="upload.php"  enctype="multipart/form-data">
@@ -34,42 +43,37 @@ else {
 		</div>
 		<input type="submit" name="upload" value="upload image">
 	</form>
-	
+
 	<img src="<?php echo $imagePath;?>">
 </section>
-<section id="logout">
-	<form action="session.php" method="get">
-		<input type="submit" name="logout" value="Logout">
-	</form>
-</section>
     <main>
-	
+
        <div class="add-section">
           <form action="app/add.php" method="POST" autocomplete="off">
              <?php if(isset($_GET['mess']) && $_GET['mess'] == 'error'){ ?>
-                <input type="text" 
-                     name="title" 
+                <input type="text"
+                     name="title"
                      style="border-color: #ff6666"
                      placeholder="This field is required" />
               <button type="submit">Add &nbsp; <span>&#43;</span></button>
 
              <?php }else{ ?>
-              <input type="text" 
-                     name="title" 
+              <input type="text"
+                     name="title"
                      placeholder="what stuff do you need to do bro?" />
               <button type="submit">Add &nbsp; <span>&#43;</span></button>
              <?php } ?>
           </form>
        </div>
-	   
+
 	   <!--Displays tasks-->
-       <?php 
+       <?php
           $stmt = $conn->prepare("SELECT * FROM todos WHERE username=? ORDER BY id DESC");
-		  $stmt ->bind_param('s',$username); 
+		  $stmt ->bind_param('s',$username);
 		  $username=$_SESSION["username"];
 		  $stmt->execute();
 		  $todos=$stmt->get_result();
-		  
+
        ?>
        <div class="show-todo-section">
             <?php if($todos->num_rows<= 0){ ?>
@@ -86,7 +90,7 @@ else {
                 <div class="todo-item">
                     <span id="<?php echo $todo['id']; ?>"
                           class="remove-to-do">x</span>
-                    <?php if($todo['checked']){ ?> 
+                    <?php if($todo['checked']){ ?>
                         <input type="checkbox"
                                class="check-box"
                                data-todo-id ="<?php echo $todo['id']; ?>"
@@ -99,7 +103,7 @@ else {
                         <h2><?php echo $todo['title'] ?></h2>
                     <?php } ?>
                     <br>
-                    <small>created: <?php echo $todo['date_time'] ?></small> 
+                    <small>created: <?php echo $todo['date_time'] ?></small>
                 </div>
             <?php } ?>
        </div>
@@ -111,7 +115,7 @@ else {
         $(document).ready(function(){
             $('.remove-to-do').click(function(){
                 const id = $(this).attr('id');
-                $.post("app/remove.php", 
+                $.post("app/remove.php",
                       {
                           id: id
                       },
@@ -125,8 +129,8 @@ else {
 
             $(".check-box").click(function(e){
                 const id = $(this).attr('data-todo-id');
-                
-                $.post('app/check.php', 
+
+                $.post('app/check.php',
                       {
                           id: id
                       },
