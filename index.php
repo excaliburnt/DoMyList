@@ -24,31 +24,33 @@ else {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>To-Do List</title>
     <link rel="stylesheet" href="css/style.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="header">
-    <h1>MyToDo's</h1>
-  </div>
 
-  <section id="logout">
-    <form action="session.php" method="get">
-      <input type="submit" name="logout" value="Logout">
-    </form>
-  </section>
+  
+		<form action="session.php" method="get">
+			<input id="logout" type="submit" name="logout" value="Logout">
+		</form>
 
-<section>
-	<form method="post" action="upload.php"  enctype="multipart/form-data">
-		<div>
-			<input type="file" name="imageUpload" accept="image/*">
-		</div>
+<div id="flexMain">
+	<section id="userInfo">
+		
+		<img src="<?php echo $imagePath;?>">
+		<?php echo "<span id='userName'>Hello</span> ".$_SESSION["username"]; ?>
+		<hr>
+		<form method="post" action="upload.php"  enctype="multipart/form-data">
+			<div>
+				<input type="file" name="imageUpload" accept="image/*">
+			</div>
 		<input type="submit" name="upload" value="upload image">
-	</form>
-
-	<img src="<?php echo $imagePath;?>">
-</section>
-    <main>
-
-       <div class="add-section">
+        </form>
+    </section>
+	
+   <main>
+		<h1>Do My List</h1>
+		<div class="add-section">
           <form action="app/add.php" method="POST" autocomplete="off">
              <?php if(isset($_GET['mess']) && $_GET['mess'] == 'error'){ ?>
                 <input type="text"
@@ -107,6 +109,7 @@ else {
                 </div>
             <?php } ?>
        </div>
+</div>
     <main>
 
     <script src="js/jquery-3.2.1.min.js"></script>
