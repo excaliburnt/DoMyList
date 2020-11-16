@@ -1,12 +1,11 @@
 <?php
 session_start();
-
 $username = "";
 $email = "";
 $errors = array();
 
 //connects to database
-$db = mysqli_connect('localhost', 'root', '', 'create account');
+$db = mysqli_connect('localhost', 'root', '', 'to_do_list');
 
 //register user
 if(isset($_POST['reg_user'])) {

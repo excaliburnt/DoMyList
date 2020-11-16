@@ -1,7 +1,6 @@
 
 <?php 
-require_once 'session.php';
-include('server.php'); 
+include "server.php"; 
 ?>
 <!DOCTYPE html>
 <html>
