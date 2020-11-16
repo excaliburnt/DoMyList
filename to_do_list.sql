@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 16, 2020 at 12:31 AM
+-- Generation Time: Nov 16, 2020 at 12:37 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -37,6 +37,20 @@ CREATE TABLE IF NOT EXISTS `todos` (
   PRIMARY KEY (`id`),
   KEY `fk_username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `username` varchar(32) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  `image` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Constraints for dumped tables
